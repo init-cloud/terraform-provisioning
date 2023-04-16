@@ -1,0 +1,42 @@
+name: Terraform-Validation CI/CD
+
+on:
+  push:
+    branches:
+    - "main"
+  pull_request:
+    branches:
+    - "main"
+
+env:
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+
+permissions:
+  contents: read
+
+jobs:
+  terraform_ci:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Format
+        run: terraform fmt -check
+
+      - name: Terraform Lint 
+        uses: actionshub/terraform-lint@main
+
+      - name: Terraform Validate
+        uses: dflook/terraform-validate@v1
+
