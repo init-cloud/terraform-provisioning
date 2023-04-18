@@ -1,5 +1,5 @@
 resource "aws_internet_gateway" "internet_gateway_service" {
-    vpc_id = "${aws_default_vpc.vpc_init_cloud_1.id}"
+    vpc_id = "${aws_vpc.vpc_init_cloud_1.id}"
 
     tags = {
         Name = "main"

@@ -3,7 +3,7 @@ locals {
 }
 
 locals {
-    subnet_app_gateway = module.vpc.subnet_app_gateway
+    subnet_git_oauth = module.vpc.subnet_apps
 }
 
 variable "GIT_OAUTH" {

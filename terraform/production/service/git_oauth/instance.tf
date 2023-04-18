@@ -11,5 +11,5 @@ resource "aws_instance" "ec2_git_oauth" {
     subnet_id = local.subnet_git_oauth.id
 
     # 보안 그룹
-    security_groups = [aws_security_group.allow_http.id, aws_security_group.allow_tls.id]
+    security_groups = [aws_security_group.aws_sg_allow_http_from_app_gateway.id, aws_security_group.aws_sg_allow_tls_from_app_gateway.id]
 }
