@@ -1,15 +1,10 @@
-/*
-    보안 그룹 네이밍 규칙
-    {csp}_sg_{policy_name}
-*/
-
-resource "aws_security_group" "aws_sg_allow_http" {
-  name        = "allow_http"
-  description = "Allow HTTP inbound traffic"
+resource "aws_security_group" "aws_sg_allow_http_from_app_gateway" {
+  name        = "allow_http_from_app_gateway"
+  description = "Allow HTTP inbound traffic from app gateway instance"
   vpc_id      = aws_vpc.vpc1.id
 
   ingress {
-    description      = "HTTP from VPC"
+    description      = "HTTP from app gateway "
     from_port        = 80
     to_port          = 80
     protocol         = "tcp"
@@ -25,17 +20,17 @@ resource "aws_security_group" "aws_sg_allow_http" {
   }
 
   tags = {
-    Name = "allow_http"
+    Name = "allow_http_from_app_gateway"
   }
 }
 
-resource "aws_security_group" "allow_tls" {
-  name        = "allow_tls"
-  description = "Allow TLS inbound traffic"
+resource "aws_security_group" "aws_sg_allow_tls_from_app_gateway" {
+  name        = "allow_tls_from_app_gateway"
+  description = "Allow TLS inbound traffic from app gateway instance"
   vpc_id      = aws_vpc.vpc1.id
 
   ingress {
-    description      = "TLS from VPC"
+    description      = "TLS from app gateway "
     from_port        = 443
     to_port          = 443
     protocol         = "tcp"
@@ -51,6 +46,6 @@ resource "aws_security_group" "allow_tls" {
   }
 
   tags = {
-    Name = "allow_tls"
+    Name = "allow_tls_from_app_gateway"
   }
 }
