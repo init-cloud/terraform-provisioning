@@ -2,11 +2,9 @@ name: Terraform-Validation CI/CD
 
 on:
   push:
-    branches:
-    - "main"
+    branches: ["main", "dev"]
   pull_request:
-    branches:
-    - "main"
+    branches: ["main", "dev"]
 
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
