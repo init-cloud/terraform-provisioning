@@ -10,3 +10,7 @@ variable "AWS_REGION" {
 variable "AWS_REGION_AZ" {
   default = "ap-northeast-2a"
 }
+
+variable "AWS_TERRAFORM_VERSION" {
+  default = "1.4.0"
+}
