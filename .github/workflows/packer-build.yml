@@ -1,0 +1,65 @@
+name: Packer-Build CI/CD
+
+env:
+  AWS_REGION: {{ secrets.AWS_REGION }}
+  AWS_ACCESS_KEY: {{ secrets.AWS_ACCESS_KEY }}
+  AWS_SECRET_KEY: {{ secrets.AWS_SECRET_KEY }}
+  AWS_REMOTE_BUCKET: {{ secrets.AWS_REMOTE_BUCKET }} 
+
+on:
+  workflow_run:
+    workflows: ["Terraform-Validation CI/CD"]
+    types:
+      - completed
+
+jobs:
+  packer_build:
+    name: Update AMI with Packer Build.
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Grant execute permission for shell files.
+        run: | 
+            chmod +x ./packer/script/01_init_dependencies.sh
+            chmod +x ./packer/script/02_packer_build.sh
+            chmod +x ./packer/script/03_update_terraform_state.sh
+
+      - name: Install dependencies
+        run : ./packer/script/01_init_dependencies.sh
+
+      - name: Build AMI with Packer
+        run : ./packer/script/02_packer_build.sh
+
+      - name: Update Terraform Remote State
+        run: ./packer/script/03_update_terraform_state.sh
+
+      - name: Deploy App Gateway
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_IP }}
+          username: ${{ secrets.REMOTE_SSH_ID }}
+          key: ${{ secrets.REMOTE_SSH_KEY }}
+          port: ${{ secrets.REMOTE_SSH_PORT }}
+          script: |
+            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+            docker compose stop
+            docker rm -f ${{ secrets.DOCKER_INSTANCE }}
+            docker rm -f ${{ secrets.DOCKER_INSTANCE }}
+            docker rm -f ${{ secrets.DOCKER_INSTANCE }}
+            docker rm -f ${{ secrets.DOCKER_INSTANCE }}
+            docker pull ${{ secrets.DOCKER_REPO }}
+            docker pull ${{ secrets.DOCKER_REPO }}
+            docker pull ${{ secrets.DOCKER_REPO }}
+            docker pull ${{ secrets.DOCKER_REPO }}
+            docker-compose up -d
+            docker image prune -f
+
