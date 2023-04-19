@@ -9,11 +9,11 @@ resource "aws_security_group" "aws_sg_allow_http" {
   vpc_id      = local.vpc_init_cloud_1.id
 
   ingress {
-    description      = "HTTP from VPC"
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = [local.vpc_init_cloud_1.cidr_block]
+    description = "HTTP from VPC"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = [local.vpc_init_cloud_1.cidr_block]
   }
 
   egress {
@@ -35,11 +35,11 @@ resource "aws_security_group" "aws_sg_allow_tls" {
   vpc_id      = local.vpc_init_cloud_1.id
 
   ingress {
-    description      = "TLS from VPC"
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = [local.vpc_init_cloud_1.cidr_block]
+    description = "TLS from VPC"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = [local.vpc_init_cloud_1.cidr_block]
   }
 
   egress {

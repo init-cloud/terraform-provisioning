@@ -9,11 +9,11 @@ resource "aws_security_group" "aws_sg_allow_http_from_app_gateway" {
   vpc_id      = local.vpc_init_cloud_1.id
 
   ingress {
-    description      = "HTTP from app gateway "
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = [local.vpc_init_cloud_1.cidr_block]
+    description = "HTTP from app gateway "
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = [local.vpc_init_cloud_1.cidr_block]
   }
 
   egress {
@@ -35,11 +35,11 @@ resource "aws_security_group" "aws_sg_allow_tls_from_app_gateway" {
   vpc_id      = local.vpc_init_cloud_1.id
 
   ingress {
-    description      = "TLS from app gateway "
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = [local.vpc_init_cloud_1.cidr_block]
+    description = "TLS from app gateway "
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = [local.vpc_init_cloud_1.cidr_block]
   }
 
   egress {
