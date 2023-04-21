@@ -2,10 +2,6 @@ name: Terraform-Validation Called CI/CD
 
 on:
   workflow_call:
-    inputs:
-      username:
-        required: true
-        type: string
     secrets:
       AWS_REGION:
         required: true
