@@ -8,11 +8,8 @@ on:
     branches: ["main", "dev"]
     paths: "terraform/dev/**"
 
-env:
-  AWS_REGION: ${{ secrets.AWS_REGION }}
-
 jobs:
   terraform_validation:
     uses: ./.github/workflows/terraform-validation.yml
-    with:
+    secrets:
       AWS_REGION: ${{ secrets.AWS_REGION }}
