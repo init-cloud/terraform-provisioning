@@ -6,7 +6,7 @@ AWS_REGION=$AWS_REGION
 ARTIFACT=`packer build -machine-readable -var aws_access_key=$AWS_ACCESS_KEY -var aws_secret_key=$AWS_SECRET_KEY ./packer/default_ubuntu_packer_template.json | awk -F, '$0 ~/artifact,0,id/ {print $6}'`
 echo "packer output:"
 
-cat default_ubuntu_packer_template.json
+cat ./packer/default_ubuntu_packer_template.json
 AMI_ID=`echo $ARTIFACT | cut -d ':' -f2`
 
 echo "[AMI ID: ${AMI_ID}]"
