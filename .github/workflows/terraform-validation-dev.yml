@@ -13,7 +13,5 @@ env:
 
 jobs:
   terraform_validation:
-    runs-on: ubuntu-20.04
-    - uses: actions/checkout@v2
     - name: Terraform Init & Validation
       uses: init-cloud/terraform-provisioning/.github/workflows/terraform_validation.yml@main

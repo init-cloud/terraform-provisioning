@@ -22,7 +22,9 @@ permissions:
 
 jobs:
   terraform_ci:
+    runs-on: ubuntu-20.04
     steps:
+      - uses: actions/checkout@v2
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
