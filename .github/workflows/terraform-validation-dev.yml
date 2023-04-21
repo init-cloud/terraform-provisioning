@@ -13,5 +13,4 @@ env:
 
 jobs:
   terraform_validation:
-    - name: Terraform Init & Validation
-      uses: init-cloud/terraform-provisioning/.github/workflows/terraform_validation.yml@main
+    uses: init-cloud/terraform-provisioning/.github/workflows/terraform_validation.yml@main
