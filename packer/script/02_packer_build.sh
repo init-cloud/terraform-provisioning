@@ -3,7 +3,7 @@ set -ex
 
 AWS_REGION="ap-northeast-2"
 
-ARTIFACT=`packer build -machine-readable -var 'aws_access_key=my_access_key' -var 'aws_secret_key=my_secret_access_key' default_ubuntu_packer_template.json | awk -F, '$0 ~/artifact,0,id/ {print $6}'`
+ARTIFACT=`packer build -machine-readable -var aws_access_key=$AWS_ACCESS_KEY -var aws_secret_key=$AWS_SECRET_KEY ../default_ubuntu_packer_template.json | awk -F, '$0 ~/artifact,0,id/ {print $6}'`
 echo "packer output:"
 
 cat default_ubuntu_packer_template.json
