@@ -10,6 +10,8 @@ resource "aws_instance" "ec2_app_gateway" {
   # 서브넷 ID
   subnet_id = local.subnet_app_gateway.id
 
+  key_name = aws_key_pair.bastion_keypair.id
+
   # 보안 그룹
-  security_groups = [aws_security_group.aws_sg_allow_http.id, aws_security_group.aws_sg_allow_tls.id]
+  security_groups = [aws_security_group.aws_sg_allow_http.id, aws_security_group.aws_sg_allow_tls.id, aws_security_group.aws_sg_allow_ssh_bastion.id]
 }

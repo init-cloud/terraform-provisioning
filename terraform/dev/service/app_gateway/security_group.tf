@@ -54,3 +54,26 @@ resource "aws_security_group" "aws_sg_allow_tls" {
     Name = "allow_tls"
   }
 }
+
+resource "aws_security_group" "aws_sg_bastion" {
+  name = "allow_ssh_bastion"
+  vpc_id = local.vpc_init_cloud_1.id
+
+  ingress {
+    from_port = 22
+    protocol = "tcp"
+    to_port = 22
+    cidr_blocks = [local.vpc_init_cloud_1.cidr_block]
+  }
+
+  egress {
+    from_port = 0
+    protocol = "-1"
+    to_port = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    "Name" = "allow_ssh_bastion"
+  }
+}
