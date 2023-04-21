@@ -1,3 +1,8 @@
+/*
+  @floodnut 2023.04.22 최초 작성
+  @floodnut 2023.04.22 수정
+*/
+
 resource "aws_key_pair" "bastion_keypair" {
   key_name   = "bastion_keypair"
   public_key = fileexists(var.PATH_TO_PUBLIC_KEY) ? file(var.PATH_TO_PUBLIC_KEY) : var.DUMMY_SSH_PUB_KEY

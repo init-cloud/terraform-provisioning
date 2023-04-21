@@ -10,6 +10,8 @@ resource "aws_instance" "ec2_app_gateway" {
   # 서브넷 ID
   subnet_id = local.subnet_app_gateway.id
 
+  # 배스천 호스트 접속용 키쌍
+  # 배스천은 별도 인스턴스로 빼는걸 추천
   key_name = aws_key_pair.bastion_keypair.id
 
   # 보안 그룹

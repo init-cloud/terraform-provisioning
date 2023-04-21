@@ -1,6 +1,9 @@
 /*
-    인스턴스 네이밍 규칙
-    ec2_{app_name}
+  @floodnut 2023.04.22 최초 작성
+  @floodnut 2023.04.22 수정
+
+  인스턴스 네이밍 규칙
+  ec2_{app_name}
 */
 
 resource "aws_instance" "ec2_rocket" {

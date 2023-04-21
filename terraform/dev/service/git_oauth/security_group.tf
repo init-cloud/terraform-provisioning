@@ -1,6 +1,9 @@
 /*
-    보안 그룹 네이밍 규칙
-    {csp}_sg_{policy_name}
+  @floodnut 2023.04.22 최초 작성
+  @floodnut 2023.04.22 수정
+
+  보안 그룹 네이밍 규칙
+  {csp}_sg_{policy_name}
 */
 
 resource "aws_security_group" "aws_sg_allow_http_from_app_gateway" {
