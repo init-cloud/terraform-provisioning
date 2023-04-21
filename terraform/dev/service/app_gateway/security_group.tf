@@ -58,7 +58,7 @@ resource "aws_security_group" "aws_sg_allow_tls" {
   }
 }
 
-resource "aws_security_group" "aws_sg_bastion" {
+resource "aws_security_group" "aws_sg_allow_ssh_bastion" {
   name = "allow_ssh_bastion"
   vpc_id = local.vpc_init_cloud_1.id
 
