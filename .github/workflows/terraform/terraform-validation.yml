@@ -23,10 +23,6 @@ permissions:
 jobs:
   terraform_ci:
     steps:
-      - uses: actions/checkout@v2
-        with: 
-          repository: init-cloud/terraform-provisioning
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
