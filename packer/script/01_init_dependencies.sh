@@ -1,6 +1,6 @@
 # 기본 의존성 패키지 설치
-apt-get update
-apt-get install -y python3 openjdk-11-jre awscli
+sudo apt-get update
+sudo apt-get install -y python3 openjdk-11-jre awscli
 
 # 테라폼 설치
 wget -q https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
