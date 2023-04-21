@@ -1,16 +1,17 @@
-name: Packer-Build CI/CD
-
-env:
-  AWS_REGION: {{ secrets.AWS_REGION }}
-  AWS_ACCESS_KEY: {{ secrets.AWS_ACCESS_KEY }}
-  AWS_SECRET_KEY: {{ secrets.AWS_SECRET_KEY }}
-  AWS_REMOTE_BUCKET: {{ secrets.AWS_REMOTE_BUCKET }} 
+name: Packer-Build Called CI/CD
 
 on:
-  workflow_run:
-    workflows: ["Terraform-Validation CI/CD"]
-    types:
-      - completed
+  workflow_call:
+    secrets:
+      AWS_REGION:
+        required: true
+      AWS_ACCESS_KEY:
+        required: true
+      AWS_SECRET_KEY:
+        required: true
+
+permissions:
+  contents: read
 
 jobs:
   packer_build:
