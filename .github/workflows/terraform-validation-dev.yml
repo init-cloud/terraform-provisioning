@@ -18,4 +18,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: ./.github/workflows/terraform_validation.yml
+      - uses: ./.github/workflows/terraform_validation.yml@main
