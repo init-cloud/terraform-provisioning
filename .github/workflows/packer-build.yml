@@ -25,7 +25,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: ap-northeast-2
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Grant execute permission for shell files.
         run: | 
@@ -42,24 +42,4 @@ jobs:
       - name: Update Terraform Remote State
         run: ./packer/script/03_update_terraform_state.sh
 
-      - name: Deploy App Gateway
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.REMOTE_IP }}
-          username: ${{ secrets.REMOTE_SSH_ID }}
-          key: ${{ secrets.REMOTE_SSH_KEY }}
-          port: ${{ secrets.REMOTE_SSH_PORT }}
-          script: |
-            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-            docker compose stop
-            docker rm -f ${{ secrets.DOCKER_INSTANCE }}
-            docker rm -f ${{ secrets.DOCKER_INSTANCE }}
-            docker rm -f ${{ secrets.DOCKER_INSTANCE }}
-            docker rm -f ${{ secrets.DOCKER_INSTANCE }}
-            docker pull ${{ secrets.DOCKER_REPO }}
-            docker pull ${{ secrets.DOCKER_REPO }}
-            docker pull ${{ secrets.DOCKER_REPO }}
-            docker pull ${{ secrets.DOCKER_REPO }}
-            docker-compose up -d
-            docker image prune -f
 
