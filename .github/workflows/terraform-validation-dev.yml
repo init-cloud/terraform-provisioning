@@ -13,4 +13,4 @@ env:
 
 jobs:
   terraform_validation:
-    uses: ./.github/workflows/terraform/terraform_validation.yml
+    uses: ./.github/workflows/terraform_validation.yml
