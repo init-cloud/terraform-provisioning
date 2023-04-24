@@ -12,6 +12,13 @@ cd /usr/local/bin
 wget -q https://releases.hashicorp.com/packer/1.8.6/packer_1.8.6_linux_amd64.zip
 unzip packer_1.8.6_linux_amd64.zip
 
+# 설치 확인
+echo "[Terraform version]"
+terraform version
+
+echo "[Packer version]"
+packer version
+
 # clean
 apt-get clean
 rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
