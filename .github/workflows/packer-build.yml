@@ -48,4 +48,9 @@ jobs:
       - name: Update Terraform Remote State
         run: ./packer/script/03_update_terraform_state.sh
 
+      - name: Move Directory
+        run: cd ./terraform/dev
+
+      - name: Terraform apply
+        run: terraform apply
 
