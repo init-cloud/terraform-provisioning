@@ -13,5 +13,8 @@ echo "[AMI ID: ${AMI_ID}]"
 echo "[Writing ami.tf and uploading it to s3]"
 
 echo 'variable "APP_INSTANCE_AMI" { default = "'${AMI_ID}'" }' > ami.tf
+echo 'variable "APP_INSTANCE_AMI" { default = "'${AMI_ID}'" }' > ../terraform/dev/service/app_gateway/ami.tf
+echo 'variable "APP_INSTANCE_AMI" { default = "'${AMI_ID}'" }' > ../terraform/dev/service/app_gateway/git_oauth.tf
+echo 'variable "APP_INSTANCE_AMI" { default = "'${AMI_ID}'" }' > ../terraform/dev/service/app_gateway/rocket.tf
 S3_BUCKET=`aws s3 ls --region $AWS_REGION | grep terraform-state | tail -n1 | cut -d ' ' -f3`
 aws s3 cp ami.tf s3://${S3_BUCKET}/ami.tf --region $AWS_REGION
