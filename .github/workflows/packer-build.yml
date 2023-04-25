@@ -52,5 +52,5 @@ jobs:
         run: cd ./terraform/dev
 
       - name: Terraform apply
-        run: terraform apply
+        run: terraform apply -auto-approve
 
