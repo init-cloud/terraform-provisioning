@@ -20,6 +20,6 @@ echo "[Packer version]"
 packer version
 
 # clean
-apt-get clean
+sudo apt-get clean
 rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 rm packer_1.8.6_linux_amd64.zip
